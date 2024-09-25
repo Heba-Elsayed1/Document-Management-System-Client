@@ -1,0 +1,59 @@
+@if(!isShared && isUser && isUserDocument){
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	<button type="button" class="btn uploadBtn " (click)="openUpload()">Upload</button>
+</div>
+}
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col">Type</th>
+			<th scope="col">Creation Date</th>
+			<th scope="col">Download</th>
+			@if(!isShared && isUser && isUserDocument){
+			<th scope="col">Update</th>
+			<th scope="col">Delete</th>
+			}
+
+		</tr>
+	</thead>
+	<tbody>
+		@for (document of documents; track document.id) {
+		<tr>
+			<th scope="row" class="id">{{document.id}}</th>
+			<td (click)="previewDocument(document.id)" class="viewData">{{document.name}}</td>
+			<td>{{ document.type}}</td>
+			<td>{{document.creationDate | date}}</td>
+			<td class="download"><a (click)="downloadDocument(document.id)">Download</a></td>
+			@if(!isShared && isUser && isUserDocument){
+			<td class="Update" (click)="openUpdate(document)"><a>Update</a></td>
+			<td class="delete" (click)="openDelete(document.name,document.id)" ><span class="material-symbols-outlined">delete</span></td>
+			}
+
+		</tr>
+		}
+	</tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+    
+      <li class="page-item" [class.disabled]="pageNumber <= 1">
+        <button class="page-link" (click)="onPageChange(pageNumber - 1)" [disabled]="pageNumber <= 1">
+          Previous
+        </button>
+      </li>
+  
+      <li class="page-item disabled">
+        <span class="page-link">Page {{ pageNumber }}</span>
+      </li>
+  
+      <li class="page-item" [class.disabled]="documents.length < pageSize">
+        <button class="page-link" (click)="onPageChange(pageNumber + 1)" [disabled]="documents.length < pageSize">
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
+  

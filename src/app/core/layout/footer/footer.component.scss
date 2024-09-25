@@ -1,0 +1,43 @@
+footer{
+    background-color: #164717;
+    height: 320px;
+    width: 100%;
+    margin-top: 100px;
+  }
+  footer p{
+    text-align: center;
+    color: #FCFDF2;
+    padding-top: 100px;
+    font-size: 35px;
+    font-family: "REM";
+    cursor: pointer;
+    margin-bottom: 15px;
+
+  }
+  .foot{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+  }
+  footer ul li a:hover{
+    text-decoration: none;
+    color: #FFE9B1;
+  }
+  .styleicons{
+    color: #FCFDF2;
+    margin: 10px;
+    cursor: pointer;
+  }
+  .cobyright{
+      color: rgba(126, 123, 123, 0.685);
+
+  }
+  ul li a {
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    font-size: large;
+    color: #FCFDF2;
+    font-family: "REM";
+
+}

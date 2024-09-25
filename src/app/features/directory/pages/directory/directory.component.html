@@ -1,0 +1,30 @@
+<div class="allcard">
+
+
+@for (folder of this.folders; track folder.id) {
+  <div class="folder">
+
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="assets/yellow-file.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8 data">
+          <div class="card-body">
+            @if (folder.isPublic) {
+            <h2 class="card-title">{{folder.name}} <span> -----public</span></h2>
+            }
+            @else {
+            <h2 class="card-title">{{folder.name}} <span> -----private</span></h2>
+            }
+            <button type="button" class="btn open " (click)="openFolder(folder.id)" >Open</button>
+            <button type="button" class="btn update button-border"  [disabled]="isShared || !isUser" (click)="openUpdate(folder)">Update</button>
+            <button type="button" class="btn delete button-border"  [disabled]="isShared || !isUser" (click)="openDelete(folder.name,folder.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+}

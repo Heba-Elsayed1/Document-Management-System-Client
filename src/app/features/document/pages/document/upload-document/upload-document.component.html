@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">Upload Document</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="handleClose()"></button>
+</div>
+<div class="modal-body">
+    <div class="row mb-3">
+        <input type="file" class="file-input" (change)="onChange($event)" />
+        @if(file){
+        <div class="file-info">
+            <span>File details:</span>
+            <ul>
+                <li>Name : {{file.name}}</li>
+                <li>Type : {{file.type}}</li>
+                <li>Size : {{file.size}}</li>
+            </ul>
+        </div>
+        }
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="handleUpload()">Upload</button>
+    </div>
+
+</div>

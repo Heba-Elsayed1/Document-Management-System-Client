@@ -1,0 +1,22 @@
+table{
+    margin-top: 10px;
+}
+.fullName{
+    cursor: pointer;
+}
+.lockUser{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.search{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 10px;   
+}
+input{
+    border-radius: 20px;
+    height: 30px;
+    border: solid rgb(158, 155, 155);
+}

@@ -1,0 +1,55 @@
+<div class="search">
+    <input type="text" placeholder="Search items..."  [(ngModel)]="searchItem" (input)="search()"/>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">NiD</th>
+            <th scope="col">lock User</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (user of filteredUsers; track user.id) {
+        <tr>
+            <th scope="row" class="id">{{user.id}}</th>
+            <td (click)="openWorkspace(user.id)" class="fullName">{{user.fullName}}</td>
+            <td>{{user.userName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.nid}}</td>
+            <td class="lockUser"><a (click)="openLock(user.id)">Lock {{user.userName}}</a></td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+    
+      <li class="page-item" [class.disabled]="pageNumber <= 1">
+        <button class="page-link" (click)="onPageChange(pageNumber - 1)" [disabled]="pageNumber <= 1">
+          Previous
+        </button>
+      </li>
+  
+      <li class="page-item disabled">
+        <span class="page-link">Page {{ pageNumber }}</span>
+      </li>
+  
+      <li class="page-item" [class.disabled]="filteredUsers.length < pageSize">
+        <button class="page-link" (click)="onPageChange(pageNumber + 1)" [disabled]="filteredUsers.length < pageSize">
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
+  
+

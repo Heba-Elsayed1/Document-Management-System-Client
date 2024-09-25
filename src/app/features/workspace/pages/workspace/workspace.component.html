@@ -1,0 +1,63 @@
+<h1>Workspace : <a (click)="openUpdate()"><span>{{workspaceName}}</span></a></h1>
+@if(isUser){
+    <button  class="btn button-border buttons" (click)="openAddFolder()">Add Folder</button>
+}
+<button (click)="pressed()" class="btn button-border buttons">{{buttonValue}} </button>
+
+<div class="folders">
+    <div>
+
+        @if(!isPressed){
+            <app-directory [folders]="folders" [isShared]="isPressed"></app-directory>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                
+                  <li class="page-item" [class.disabled]="pageNumber <= 1">
+                    <button class="page-link" (click)="onPageChange(pageNumber - 1)" [disabled]="pageNumber <= 1">
+                      Previous
+                    </button>
+                  </li>
+              
+                  <li class="page-item disabled">
+                    <span class="page-link">Page {{ pageNumber }}</span>
+                  </li>
+              
+                  <li class="page-item" [class.disabled]="folders.length < pageSize">
+                    <button class="page-link" (click)="onPageChange(pageNumber + 1)" [disabled]="folders.length < pageSize">
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            
+        }
+        @else{
+            <app-directory [folders]="sharedFolders" [isShared]="isPressed"></app-directory>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                
+                  <li class="page-item" [class.disabled]="sharedPageNumber <= 1">
+                    <button class="page-link" (click)="onSharedPageChange(sharedPageNumber - 1)" [disabled]="sharedPageNumber <= 1">
+                      Previous
+                    </button>
+                  </li>
+              
+                  <li class="page-item disabled">
+                    <span class="page-link">Page {{ sharedPageNumber }}</span>
+                  </li>
+              
+                  <li class="page-item" [class.disabled]="sharedFolders.length < sharedPageSize">
+                    <button class="page-link" (click)="onSharedPageChange(sharedPageNumber + 1)" [disabled]="sharedFolders.length < sharedPageSize">
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+        }
+                
+    </div>
+    
+</div>
+
+
+  

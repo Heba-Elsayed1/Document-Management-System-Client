@@ -1,0 +1,32 @@
+@mixin activeLink(){
+    background-color: #97d57e;
+    border: 2px;
+    border-radius: 15px;
+}
+.active{
+    @include activeLink() ;
+}
+img{
+    width: 130px;
+    height: 75px;
+}
+nav{
+    background-color: #ffffff;
+    
+}
+.lists{
+    justify-content: center;
+}
+a{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+a:hover{
+    text-decoration:underline;
+}
+.logout{
+    cursor: pointer;
+}

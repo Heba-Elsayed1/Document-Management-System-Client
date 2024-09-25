@@ -1,0 +1,120 @@
+<h1>Register</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+   <p>
+        <mat-form-field  appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput placeholder="enter your Full Name" formControlName="FullName">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+      </p>
+    
+      <p>
+        <mat-form-field  appearance="outline">
+          <mat-label>UserName</mat-label>
+          <input matInput placeholder="enter your UserName" formControlName="UserName">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          @if(this.form.get('userName')?.hasError('required')){
+            <mat-error>{{ 'UserName is required' }}</mat-error>
+          }
+        </mat-form-field>
+      </p> 
+    
+  <p>
+    <mat-form-field  appearance="outline">
+      <mat-label>email</mat-label>
+      <input matInput placeholder="enter your email" formControlName="Email" >
+      <mat-icon matSuffix>mail</mat-icon>
+
+      @if(this.form.get('email')?.hasError('required')){
+        <mat-error>{{ 'email is required' }}</mat-error>
+      }
+
+      @if(this.form.get('email')?.hasError('email')){
+        <mat-error>{{ 'must be email' }}</mat-error>
+      }
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field  appearance="outline">
+      <mat-label>password</mat-label>
+      <input matInput placeholder="enter your Password" formControlName="Password">
+      <mat-icon matSuffix>password</mat-icon>
+      @if(this.form.get('password')?.hasError('required')){
+        <mat-error>{{ 'password is required'}}</mat-error>
+      }
+      @if(this.form.get('password')?.hasError('minlength')){
+        <mat-error>{{ 'password should be at least 8 characters'}}</mat-error>
+      }
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field  appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput placeholder="enter your Confirmed Password" formControlName="PasswordConfirmed">
+      <mat-icon matSuffix>lock</mat-icon>
+      @if(this.form.get('confirmPassword')?.hasError('required')){
+        <mat-error>{{ 'Confirm password is required' }}</mat-error>
+      }
+
+      @if(this.form.get('confirmPassword')?.hasError('mustMatch')){
+        <mat-error>{{ 'Confirm password does not match password' }}</mat-error>
+      }
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field  appearance="outline">
+      <mat-label>NID</mat-label>
+      <input matInput placeholder="enter your National Id" formControlName="NID">
+      <mat-icon matSuffix>how_to_reg</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field  appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="enter your Phone Number" formControlName="PhoneNumber">
+      <mat-icon matSuffix>call</mat-icon>
+    </mat-form-field>
+  </p>
+
+  <p>
+      <mat-radio-group aria-label="Gender" formControlName = "Gender">
+        <mat-radio-button value="male" >Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
+  </p> 
+  
+
+  <p>
+    <mat-form-field  appearance="outline">
+      <mat-label>Workspace Name</mat-label>
+      <input matInput placeholder="enter your workspaceName" formControlName="WorkspaceName">
+      <mat-icon matSuffix >folder</mat-icon>
+      @if(this.form.get('workspaceName')?.hasError('required')){
+        <mat-error>{{ 'WorkspaceName is required' }}</mat-error>
+      }
+    </mat-form-field>
+  </p> 
+
+
+  <button type="submit" class="btn ">Submit</button>
+  <a class="signUp" [routerLink]="['/login']" >Login</a>
+</form> 
+
+ @if(!isRegister){
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <strong>Error!</strong> {{errorMessage}}
+  </div>
+ } 
+
+
+
+ 
+<!-- <div style="margin:auto">
+  {{form.value | json}}
+</div>
+<div class="alert alert-danger" style="margin:auto">
+  {{form.get('confirmPassword')?.errors | json}}
+</div> -->
+ 
