@@ -16,7 +16,6 @@ export class AuthServiceService {
 
   constructor(private router: Router , private http : HttpClient) 
   { 
-    
   }
 
   login(credentials: { username: string; password: string }){
@@ -51,15 +50,21 @@ export class AuthServiceService {
    startLogin(){
     this.isAuthenticatedSource.next(true); 
    }
-
-   isLogin() : boolean {
-    const token = this.getToken() ;
-    const expiration = localStorage.getItem(this.expirationKey) ;
-
-    if(!token || !expiration)
+   
+  isLogin(): boolean {
+    const token = this.getToken();
+    const expiration = localStorage.getItem(this.expirationKey);
+  
+    if (!token || !expiration) {
+      this.isAuthenticatedSource.next(false);
       return false;
-    const now = new Date() ;
-    return now <  new Date(expiration) ;
+    }
+  
+    const now = new Date();
+    const isAuthenticated = now < new Date(expiration);
+    this.isAuthenticatedSource.next(isAuthenticated);
+    
+    return isAuthenticated;
   }
 
    logOut(){
