@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <img src="assets/logo3.png" alt="logo">
-    @if(this.authservice.isLogin()){
+    @if(isLoggedIn){
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link active logout" (click)="handleNavigation()"
-            routerLinkActive="active">{{isLoggedIn() ?'Logout' :'Login'}}</a>
+            routerLinkActive="active">{{isLoggedIn ?'Logout' :'Login'}}</a>
         </li>
       </ul>
     </div>

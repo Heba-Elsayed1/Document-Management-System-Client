@@ -26,7 +26,6 @@ constructor( protected activeModal : NgbActiveModal , private formBuilder:FormBu
   @Input() name : string ='';
 
   ngOnInit(): void {
-    console.log(this.id);
     this.form = this.formBuilder.group({
       id: this.id,
       name: [this.name, Validators.required],

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { truncate } from 'fs';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -12,7 +14,10 @@ export class AuthServiceService {
   private expirationKey ='tokenExpiration' ;
   private roleKey ='role' ;
 
-  constructor(private router: Router , private http : HttpClient) { }
+  constructor(private router: Router , private http : HttpClient) 
+  { 
+    
+  }
 
   login(credentials: { username: string; password: string }){
     return this.http.post<any>('https://localhost:7163/api/User/login', credentials) ;
@@ -40,6 +45,13 @@ export class AuthServiceService {
     return false;
   }
   
+  private isAuthenticatedSource = new BehaviorSubject<boolean>(false);
+  isAuthenticated$ = this.isAuthenticatedSource.asObservable() ;
+
+   startLogin(){
+    this.isAuthenticatedSource.next(true); 
+   }
+
    isLogin() : boolean {
     const token = this.getToken() ;
     const expiration = localStorage.getItem(this.expirationKey) ;
@@ -51,8 +63,13 @@ export class AuthServiceService {
   }
 
    logOut(){
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.expirationKey);
+    this.isAuthenticatedSource.next(false);
+    if(this.getToken() || this.getRole())
+    {
+      localStorage.removeItem(this.tokenKey);
+      localStorage.removeItem(this.expirationKey);
+      localStorage.removeItem(this.roleKey);
+    }
     this.router.navigate(['/login']);
   }
 

@@ -49,6 +49,7 @@ export class LoginComponent {
         const role = response.role ;
 
         this.authService.storeToken(token , expiration , role) ;
+        this.authService.startLogin();
         this.router.navigate(['/home']);
       },
       error : err =>{
